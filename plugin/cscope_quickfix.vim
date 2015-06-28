@@ -105,6 +105,10 @@ if !exists("Cscope_ToolMenu")
 	let Cscope_ToolMenu = 1
 endif
 
+if !exists("Cscope_Key")
+	let Cscope_Key = "<C-q>"
+endif
+
 " RunCscope()
 " Run the cscope command using the supplied option and pattern
 function! s:RunCscope(...)
@@ -200,32 +204,36 @@ endfunction
 command! -nargs=* Cscope call s:RunCscope(<f-args>)
 
 if g:Cscope_Keymap == 1
-	nmap <C-\>s :Cscope s <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>g :Cscope g <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>d :Cscope d <C-R>=expand("<cword>")<CR> <C-R>=expand("%")<CR><CR>
-	nmap <C-\>c :Cscope c <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>t :Cscope t <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>e :Cscope e <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-\>f :Cscope f <C-R>=expand("<cfile>")<CR><CR>
-	nmap <C-\>i :Cscope i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    " Change default mapping from <C-\> to <C-q>, because
+    " conflicts with cscope_macros.vim plugin
+	nmap <C-q>s :Cscope s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-q>g :Cscope g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-q>d :Cscope d <C-R>=expand("<cword>")<CR> <C-R>=expand("%")<CR><CR>
+	nmap <C-q>c :Cscope c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-q>t :Cscope t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-q>e :Cscope e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-q>f :Cscope f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-q>i :Cscope i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
-	nmap <C-@>s :split<CR>:Cscope s <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@>g :split<CR>:Cscope g <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@>d :split<CR>:Cscope d <C-R>=expand("<cword>")<CR> <C-R>=expand("%")<CR><CR>
-	nmap <C-@>c :split<CR>:Cscope c <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@>t :split<CR>:Cscope t <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@>e :split<CR>:Cscope e <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@>f :split<CR>:Cscope f <C-R>=expand("<cfile>")<CR><CR>
-	nmap <C-@>i :split<CR>:Cscope i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    " Disable mapping because it conflicts with cscope_macros.vim plugin
+    "nmap <C-@>s :split<CR>:Cscope s <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@>g :split<CR>:Cscope g <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@>d :split<CR>:Cscope d <C-R>=expand("<cword>")<CR> <C-R>=expand("%")<CR><CR>
+    "nmap <C-@>c :split<CR>:Cscope c <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@>t :split<CR>:Cscope t <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@>e :split<CR>:Cscope e <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@>f :split<CR>:Cscope f <C-R>=expand("<cfile>")<CR><CR>
+    "nmap <C-@>i :split<CR>:Cscope i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
-	nmap <C-@><C-@>s :vert split<CR>:Cscope s <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@><C-@>g :vert split<CR>:Cscope g <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@><C-@>d :vert split<CR>:Cscope d <C-R>=expand("<cword>")<CR> <C-R>=expand("%")<CR><CR>
-	nmap <C-@><C-@>c :vert split<CR>:Cscope c <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@><C-@>t :vert split<CR>:Cscope t <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@><C-@>e :vert split<CR>:Cscope e <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-@><C-@>f :vert split<CR>:Cscope f <C-R>=expand("<cfile>")<CR><CR>
-	nmap <C-@><C-@>i :vert split<CR>:Cscope i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    " Disable mapping because it conflicts with cscope_macros.vim plugin
+    "nmap <C-@><C-@>s :vert split<CR>:Cscope s <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@><C-@>g :vert split<CR>:Cscope g <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@><C-@>d :vert split<CR>:Cscope d <C-R>=expand("<cword>")<CR> <C-R>=expand("%")<CR><CR>
+    "nmap <C-@><C-@>c :vert split<CR>:Cscope c <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@><C-@>t :vert split<CR>:Cscope t <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@><C-@>e :vert split<CR>:Cscope e <C-R>=expand("<cword>")<CR><CR>
+    "nmap <C-@><C-@>f :vert split<CR>:Cscope f <C-R>=expand("<cfile>")<CR><CR>
+    "nmap <C-@><C-@>i :vert split<CR>:Cscope i ^<C-R>=expand("<cfile>")<CR>$<CR>
 endif
 if has('gui_running') && g:Cscope_PopupMenu == 1
 	nmenu PopUp.-SEP3-	<Nop>
